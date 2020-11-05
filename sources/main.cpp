@@ -37,8 +37,9 @@ void const** randomOrder(size_t const length) {
 
   size_t random;
   void const** current = array;
+  auto rndSeed = static_cast<unsigned int>(time(nullptr));
   for (size_t i = 0; i < length - 16; i = i + 16) {
-    random = rand() % length;
+    random = rand_r(&rndSeed) % length;
 
     while (used_random.find(random) != used_random.end())
       random = (random + 1) % length;
@@ -48,7 +49,7 @@ void const** randomOrder(size_t const length) {
     current = static_cast<void const**>(array + random);
     // переходим к элементу в котором лежит (значение)
   }
-  current = nullptr;  // the last in array
+  *current = nullptr;  // the last in array
 
   return array;
 }
