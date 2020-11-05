@@ -1,4 +1,4 @@
-// Copyright 2018 Your Name <your_email>
+// Copyright 2020 <artem.malenko@yandex.ru>
 
 #include <gtest/gtest.h>
 
