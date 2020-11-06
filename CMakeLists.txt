@@ -18,8 +18,6 @@ HunterGate(
         SHA1 "64024b7b95b4c86d50ae05b926814448c93a70a0"
 )
 
-
-
 project(lab-02-cache-lib)
 project(lab-02-cache-app)
 
@@ -30,19 +28,17 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
-
-add_library(lab-02-cache STATIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-)
-
+add_library(lab-02-cache-lib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp)
 add_executable(lab-02-cache-app ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp)
 add_executable(tests ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp)
 
-
-target_include_directories(lab-02-cache
+target_include_directories(lab-02-cache-lib
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 target_include_directories(tests 
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+target_include_directories(lab-02-cache-app
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
